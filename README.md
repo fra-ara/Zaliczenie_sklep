@@ -1,45 +1,61 @@
-# Shop Saga - Zaawansowane Programowanie Obiektowe
+# 🛒 ShopApp – Distributed Order System
 
-## Opis projektu
-
-Projekt implementuje aplikację sklepu z magazynem, wykorzystującą zaawansowane wzorce programistyczne i architektoniczne w technologii .NET (C#) z użyciem MassTransit i RabbitMQ. 
-
-### Główne zastosowane wzorce i technologie:
-- **Maszyna stanów (State Machine)** - realizowana przez `OrderSagaStateMachine` z MassTransit
-- **Saga** - zarządzanie procesem zamówienia jako transakcją rozproszoną
-- **Wzorzec wydawca-abonent (Pub/Sub)** - komunikacja pomiędzy klientem, sklepem i magazynem za pomocą MassTransit
-- **Broker wiadomości** - RabbitMQ
-- **Architektura GUI** - w wersji konsolowej (można rozbudować do WPF i MVVM)
-- **Zasady SOLID** - kod jest modularny i zgodny z najlepszymi praktykami
-
-## Struktura systemu
-
-- **Shop.Server** - serwer zarządzający zamówieniami i magazynem, implementuje sagę i konsumentów MassTransit
-- **Shop.Client** - klient wysyłający zamówienia i odbierający potwierdzenia
-- **Messages** - definicje komunikatów (StartOrder, ConfirmOrder, RejectOrder itd.)
-
-## Proces zamówienia
-
-1. Klient wysyła zamówienie (StartOrder) do sklepu.
-2. Sklep uruchamia sagę, wysyłając zapytania o potwierdzenie do magazynu (CheckStock) i klienta.
-3. Magazyn sprawdza dostępność i rezerwuje zasoby, odsyła potwierdzenie lub odmowę.
-4. Klient potwierdza lub odrzuca zamówienie.
-5. Sklep kończy proces zamówienia sukcesem (potwierdzenie) lub porażką (odrzucenie).
-6. Zamówienie niepotwierdzone w ciągu 20 sekund jest anulowane (timeout).
-
-## Uruchomienie
-
-1. Uruchom RabbitMQ (localhost, domyślne konto guest/guest)
-2. Uruchom Shop.Server
-3. Uruchom jeden lub więcej klientów Shop.Client
-4. Klienci mogą składać zamówienia przez konsolę
+Projekt zaliczeniowy z przedmiotu **Zaawansowane Programowanie Obiektowe**  
 
 ---
 
-## Technologie
+## 📌 Opis projektu
 
-- .NET 6+
-- MassTransit 7+
-- RabbitMQ
-- C#
-- Wzorce projektowe: Saga, State Machine, Pub/Sub
+System rozproszony typu "Sklep z magazynem" zrealizowany w oparciu o:
+- 🧠 **Maszynę stanów (State Machine)** – zamówienia obsługiwane przez sagi
+- 🌀 **Sagi (Saga Pattern)** – kontrola przepływu komunikatów
+- 📣 **Wydawca–abonent (Pub/Sub)** – RabbitMQ + MassTransit
+- 📦 **Broker wiadomości (RabbitMQ)** – do komunikacji między procesami
+- 🖥️ **GUI w MVVM** – konsolowa aplikacja działająca w architekturze MVVM
+
+---
+
+## 🏗️ Technologia
+
+- [.NET 8](https://dotnet.microsoft.com/)
+- [MassTransit](https://masstransit.io/)
+- [RabbitMQ](https://www.rabbitmq.com/)
+- Docker (do uruchomienia RabbitMQ)
+- C# (.NET console) + MVVM
+
+---
+
+## 🔧 Uruchamianie
+
+### 1. Wymagania
+- Docker
+- .NET 8 SDK
+- RabbitMQ (uruchom przez Docker)
+
+```bash
+docker run -d --hostname rabbitmq --name rabbitmq \
+  -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+```
+
+Panel RabbitMQ: http://localhost:15672
+Login: guest, Hasło: guest
+
+### 2. Budowanie i uruchamianie
+
+``` 
+dotnet build
+dotnet run --project Shop.Server
+dotnet run --project Shop.Client
+
+```
+### 📁 Struktura projektu
+
+ShopApp/
+├── Shop.Server/         
+│   ├── Consumers/       
+│   ├── Messages/        
+│   ├── Services/        
+├── Shop.Client/         
+│   ├── Models/
+│   ├── ViewModels/
+│   ├── Views/
