@@ -50,12 +50,12 @@ dotnet run --project Shop.Client
 ```
 ### 📁 Struktura projektu
 
-ShopApp/
+ShopApp/  
 ├── Shop.Server/         
-│   ├── Consumers/       
-│   ├── Messages/        
-│   ├── Services/        
-├── Shop.Client/         
-│   ├── Models/
-│   ├── ViewModels/
-│   ├── Views/
+   │   ├── Consumers/       
+   │   ├── Messages/        
+   │   ├── Services/        
+├── Shop.Client/   
+   │   ├── Models/   
+   │   ├── ViewModels/        
+   │   ├── Views/        
