@@ -4,20 +4,17 @@ using System;
 
 namespace Shop.Server.Consumers;
 
-public class OrderTimeoutExpired
-{
-    public Guid OrderId { get; set; }
-}
-
 public class OrderSagaStateMachine : MassTransitStateMachine<OrderState>
 {
-    public State AwaitingConfirmation { get; private set; } = default!;
+    public State AwaitingStockCheck { get; private set; } = default!;
+    public State AwaitingClientConfirmation { get; private set; } = default!;
+
     public Event<StartOrder> OrderStarted { get; private set; } = default!;
-    public Event<ConfirmOrder> ClientConfirmed { get; private set; } = default!;
     public Event<StockAvailable> StockConfirmed { get; private set; } = default!;
-    public Event<RejectOrder> ClientRejected { get; private set; } = default!;
     public Event<StockUnavailable> StockRejected { get; private set; } = default!;
-    
+    public Event<ClientConfirmed> ClientConfirmed { get; private set; } = default!;
+    public Event<ClientRejected> ClientRejected { get; private set; } = default!;
+
     public Schedule<OrderState, OrderTimeoutExpired> OrderTimeoutSchedule { get; private set; } = default!;
 
     public OrderSagaStateMachine()
@@ -25,10 +22,11 @@ public class OrderSagaStateMachine : MassTransitStateMachine<OrderState>
         InstanceState(x => x.CurrentState);
 
         Event(() => OrderStarted, x => x.CorrelateById(ctx => ctx.Message.OrderId));
-        Event(() => ClientConfirmed, x => x.CorrelateById(ctx => ctx.Message.OrderId));
         Event(() => StockConfirmed, x => x.CorrelateById(ctx => ctx.Message.OrderId));
-        Event(() => ClientRejected, x => x.CorrelateById(ctx => ctx.Message.OrderId));
         Event(() => StockRejected, x => x.CorrelateById(ctx => ctx.Message.OrderId));
+        Event(() => ClientConfirmed, x => x.CorrelateById(ctx => ctx.Message.OrderId));
+        Event(() => ClientRejected, x => x.CorrelateById(ctx => ctx.Message.OrderId));
+
         Schedule(() => OrderTimeoutSchedule, x => x.TimeoutTokenId, s =>
         {
             s.Delay = TimeSpan.FromSeconds(20);
@@ -40,59 +38,53 @@ public class OrderSagaStateMachine : MassTransitStateMachine<OrderState>
                 .Then(context =>
                 {
                     context.Saga.Quantity = context.Message.Quantity;
-                    Console.WriteLine($"🛒 Order started with quantity {context.Saga.Quantity}");
+                    Console.WriteLine($"🛒 Order started with quantity {context.Saga.Quantity}, requesting stock check.");
                 })
-                .Schedule(OrderTimeoutSchedule, context => new OrderTimeoutExpired { OrderId = context.Saga.CorrelationId })
-                .TransitionTo(AwaitingConfirmation)
+                .Send(new Uri("queue:warehouse-service"), context => new CheckStock(context.Saga.CorrelationId, context.Saga.Quantity))
+                .TransitionTo(AwaitingStockCheck)
         );
 
-        During(AwaitingConfirmation,
-            When(ClientConfirmed)
-                .Then(context =>
-                {
-                    Console.WriteLine("👍 Client confirmed order.");
-                    context.Saga.ClientConfirmed = true;
-                })
-                .IfElse(context => context.Saga.StockConfirmed,
-                    then => then
-                        .Unschedule(OrderTimeoutSchedule)
-                        .Finalize(),
-                    @else => @else
-                ),
-
+        During(AwaitingStockCheck,
             When(StockConfirmed)
                 .Then(context =>
                 {
-                    Console.WriteLine("✅ Stock confirmed order.");
-                    context.Saga.StockConfirmed = true;
+                    Console.WriteLine("✅ Stock confirmed, asking client for confirmation.");
                 })
-                .IfElse(context => context.Saga.ClientConfirmed,
-                    then => then
-                        .Unschedule(OrderTimeoutSchedule)
-                        .Finalize(),
-                    @else => @else
-                ),
-
-            When(ClientRejected)
-                .Then(context =>
-                {
-                    Console.WriteLine("👎 Client rejected the order.");
-                })
-                .Unschedule(OrderTimeoutSchedule)
-                .Finalize(),
+                .Send(new Uri("queue:client-confirmation"), context => new RequestClientConfirmation(context.Saga.CorrelationId, context.Saga.Quantity))
+                .Schedule(OrderTimeoutSchedule, context => new OrderTimeoutExpired { OrderId = context.Saga.CorrelationId })
+                .TransitionTo(AwaitingClientConfirmation),
 
             When(StockRejected)
                 .Then(context =>
                 {
-                    Console.WriteLine("❌ Stock unavailable for the order.");
+                    Console.WriteLine("❌ Stock unavailable, cancelling order.");
                 })
+                // Możesz wysłać klientowi info o braku stocku, opcjonalne:
+                //.Send(new Uri("queue:client-confirmation"), context => new NotifyClientStockUnavailable(context.Saga.CorrelationId))
+                .Finalize()
+        );
+
+        During(AwaitingClientConfirmation,
+            When(ClientConfirmed)
                 .Unschedule(OrderTimeoutSchedule)
+                .Then(context =>
+                {
+                    Console.WriteLine("👍 Client confirmed order. Order completed successfully.");
+                })
+                .Finalize(),
+
+            When(ClientRejected)
+                .Unschedule(OrderTimeoutSchedule)
+                .Then(context =>
+                {
+                    Console.WriteLine("👎 Client rejected the order. Cancelling.");
+                })
                 .Finalize(),
 
             When(OrderTimeoutSchedule.Received)
                 .Then(context =>
                 {
-                    Console.WriteLine("⏰ Order timed out, cancelling.");
+                    Console.WriteLine("⏰ Timeout waiting for client confirmation, cancelling order.");
                 })
                 .Finalize()
         );

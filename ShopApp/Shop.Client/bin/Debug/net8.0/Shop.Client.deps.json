@@ -8,6 +8,10 @@
     ".NETCoreApp,Version=v8.0": {
       "Shop.Client/1.0.0": {
         "dependencies": {
+          "MassTransit": "8.4.1",
+          "MassTransit.Quartz": "8.4.1",
+          "MassTransit.RabbitMQ": "8.4.1",
+          "Microsoft.Extensions.DependencyInjection": "8.0.0",
           "Shop.Server": "1.0.0"
         },
         "runtime": {
@@ -38,6 +42,19 @@
           }
         }
       },
+      "MassTransit.Quartz/8.4.1": {
+        "dependencies": {
+          "MassTransit": "8.4.1",
+          "Quartz": "3.14.0",
+          "Quartz.Extensions.Hosting": "3.14.0"
+        },
+        "runtime": {
+          "lib/net8.0/MassTransit.QuartzIntegration.dll": {
+            "assemblyVersion": "8.4.1.0",
+            "fileVersion": "8.4.1.0"
+          }
+        }
+      },
       "MassTransit.RabbitMQ/8.4.1": {
         "dependencies": {
           "MassTransit": "8.4.1",
@@ -56,6 +73,17 @@
         },
         "runtime": {
           "lib/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/8.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.dll": {
             "assemblyVersion": "8.0.0.0",
             "fileVersion": "8.0.23.53103"
           }
@@ -161,6 +189,42 @@
           }
         }
       },
+      "Quartz/3.14.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/Quartz.dll": {
+            "assemblyVersion": "3.14.0.0",
+            "fileVersion": "3.14.0.0"
+          }
+        }
+      },
+      "Quartz.Extensions.DependencyInjection/3.14.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0",
+          "Quartz": "3.14.0"
+        },
+        "runtime": {
+          "lib/net8.0/Quartz.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "3.14.0.0",
+            "fileVersion": "3.14.0.0"
+          }
+        }
+      },
+      "Quartz.Extensions.Hosting/3.14.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Hosting.Abstractions": "8.0.0",
+          "Quartz.Extensions.DependencyInjection": "3.14.0"
+        },
+        "runtime": {
+          "lib/net8.0/Quartz.Extensions.Hosting.dll": {
+            "assemblyVersion": "3.14.0.0",
+            "fileVersion": "3.14.0.0"
+          }
+        }
+      },
       "RabbitMQ.Client/7.1.2": {
         "dependencies": {
           "System.IO.Pipelines": "8.0.0",
@@ -193,6 +257,7 @@
       "Shop.Server/1.0.0": {
         "dependencies": {
           "MassTransit": "8.4.1",
+          "MassTransit.Quartz": "8.4.1",
           "MassTransit.RabbitMQ": "8.4.1"
         },
         "runtime": {
@@ -224,6 +289,13 @@
       "path": "masstransit.abstractions/8.4.1",
       "hashPath": "masstransit.abstractions.8.4.1.nupkg.sha512"
     },
+    "MassTransit.Quartz/8.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nnABq2JLCd7BcYpUJtVw3nublHuptBf8zEicVChY3Mz7/Juv1QVZKAzKOPvcMr/JFGOYAROl9P0lREwVuqdyqA==",
+      "path": "masstransit.quartz/8.4.1",
+      "hashPath": "masstransit.quartz.8.4.1.nupkg.sha512"
+    },
     "MassTransit.RabbitMQ/8.4.1": {
       "type": "package",
       "serviceable": true,
@@ -237,6 +309,13 @@
       "sha512": "sha512-3lE/iLSutpgX1CC0NOW70FJoGARRHbyKmG7dc0klnUZ9Dd9hS6N/POPWhKhMLCEuNN5nXEY5agmlFtH562vqhQ==",
       "path": "microsoft.extensions.configuration.abstractions/8.0.0",
       "hashPath": "microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-V8S3bsm50ig6JSyrbcJJ8bW2b9QLGouz+G1miK3UTaOWmMtFwNNNzUf4AleyDWUmTrWMLNnFSLEQtxmxgNQnNQ==",
+      "path": "microsoft.extensions.dependencyinjection/8.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0": {
       "type": "package",
@@ -300,6 +379,27 @@
       "sha512": "sha512-bXJEZrW9ny8vjMF1JV253WeLhpEVzFo1lyaZu1vQ4ZxWUlVvknZ/+ftFgVheLubb4eZPSwwxBeqS1JkCOjxd8g==",
       "path": "microsoft.extensions.primitives/8.0.0",
       "hashPath": "microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+    },
+    "Quartz/3.14.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-j8mY6S0FWbtuEFbStUEZAkkGpZLbSuTT0us1w0DUQqhi+vwg/7XXS36TeH3o34zZoqYGyXvk6jrKnW/p6kS8sg==",
+      "path": "quartz/3.14.0",
+      "hashPath": "quartz.3.14.0.nupkg.sha512"
+    },
+    "Quartz.Extensions.DependencyInjection/3.14.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CUY9ZaUsmnl8YxPcl3eXmg/1UVWv1NdyATKGaBjfxf8MYH36vgCoerv7aCSjM/oRbdiaBwNnPfNgHMzxUu1p1g==",
+      "path": "quartz.extensions.dependencyinjection/3.14.0",
+      "hashPath": "quartz.extensions.dependencyinjection.3.14.0.nupkg.sha512"
+    },
+    "Quartz.Extensions.Hosting/3.14.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kbxBND5Nift+qwOud8cjywoLvjcQX+aLt6R7qQcQVg8w84NUNjTsjzZ5zIod9vz7ricSvIaQXGVbhpm7X6yVQA==",
+      "path": "quartz.extensions.hosting/3.14.0",
+      "hashPath": "quartz.extensions.hosting.3.14.0.nupkg.sha512"
     },
     "RabbitMQ.Client/7.1.2": {
       "type": "package",

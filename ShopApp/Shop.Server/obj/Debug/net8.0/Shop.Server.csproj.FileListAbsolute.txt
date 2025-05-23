@@ -5,6 +5,7 @@
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/Shop.Server.pdb
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/MassTransit.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/MassTransit.Abstractions.dll
+/Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/MassTransit.QuartzIntegration.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/MassTransit.RabbitMqTransport.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
@@ -16,6 +17,9 @@
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/Microsoft.Extensions.Primitives.dll
+/Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/Quartz.dll
+/Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/Quartz.Extensions.DependencyInjection.dll
+/Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/Quartz.Extensions.Hosting.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/RabbitMQ.Client.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/System.IO.Pipelines.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/bin/Debug/net8.0/System.Threading.RateLimiting.dll
@@ -24,6 +28,7 @@
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/obj/Debug/net8.0/Shop.Server.AssemblyInfoInputs.cache
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/obj/Debug/net8.0/Shop.Server.AssemblyInfo.cs
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/obj/Debug/net8.0/Shop.Server.csproj.CoreCompileInputs.cache
+/Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/obj/Debug/net8.0/Shop.Server.sourcelink.json
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/obj/Debug/net8.0/Shop.Ser.98263BF7.Up2Date
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/obj/Debug/net8.0/Shop.Server.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/obj/Debug/net8.0/refint/Shop.Server.dll

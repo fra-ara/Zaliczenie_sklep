@@ -46,6 +46,24 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.4.1, )"
+            },
+            "MassTransit.Quartz": {
+              "target": "Package",
+              "version": "[8.4.1, )"
+            },
+            "MassTransit.RabbitMQ": {
+              "target": "Package",
+              "version": "[8.4.1, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -106,6 +124,10 @@
           "targetAlias": "net8.0",
           "dependencies": {
             "MassTransit": {
+              "target": "Package",
+              "version": "[8.4.1, )"
+            },
+            "MassTransit.Quartz": {
               "target": "Package",
               "version": "[8.4.1, )"
             },

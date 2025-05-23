@@ -9,6 +9,7 @@
       "Shop.Server/1.0.0": {
         "dependencies": {
           "MassTransit": "8.4.1",
+          "MassTransit.Quartz": "8.4.1",
           "MassTransit.RabbitMQ": "8.4.1"
         },
         "runtime": {
@@ -34,6 +35,19 @@
       "MassTransit.Abstractions/8.4.1": {
         "runtime": {
           "lib/net8.0/MassTransit.Abstractions.dll": {
+            "assemblyVersion": "8.4.1.0",
+            "fileVersion": "8.4.1.0"
+          }
+        }
+      },
+      "MassTransit.Quartz/8.4.1": {
+        "dependencies": {
+          "MassTransit": "8.4.1",
+          "Quartz": "3.14.0",
+          "Quartz.Extensions.Hosting": "3.14.0"
+        },
+        "runtime": {
+          "lib/net8.0/MassTransit.QuartzIntegration.dll": {
             "assemblyVersion": "8.4.1.0",
             "fileVersion": "8.4.1.0"
           }
@@ -162,6 +176,42 @@
           }
         }
       },
+      "Quartz/3.14.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/Quartz.dll": {
+            "assemblyVersion": "3.14.0.0",
+            "fileVersion": "3.14.0.0"
+          }
+        }
+      },
+      "Quartz.Extensions.DependencyInjection/3.14.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0",
+          "Quartz": "3.14.0"
+        },
+        "runtime": {
+          "lib/net8.0/Quartz.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "3.14.0.0",
+            "fileVersion": "3.14.0.0"
+          }
+        }
+      },
+      "Quartz.Extensions.Hosting/3.14.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Hosting.Abstractions": "8.0.0",
+          "Quartz.Extensions.DependencyInjection": "3.14.0"
+        },
+        "runtime": {
+          "lib/net8.0/Quartz.Extensions.Hosting.dll": {
+            "assemblyVersion": "3.14.0.0",
+            "fileVersion": "3.14.0.0"
+          }
+        }
+      },
       "RabbitMQ.Client/7.1.2": {
         "dependencies": {
           "System.IO.Pipelines": "8.0.0",
@@ -212,6 +262,13 @@
       "sha512": "sha512-sf0f0Mj3B8lJFt5As2rSFiszOx4YhMDdQmV0CIzQG6PcWGO1ozped+YMJRdBqqTgvtHTjjWJOEMfgYtfXrPu2A==",
       "path": "masstransit.abstractions/8.4.1",
       "hashPath": "masstransit.abstractions.8.4.1.nupkg.sha512"
+    },
+    "MassTransit.Quartz/8.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nnABq2JLCd7BcYpUJtVw3nublHuptBf8zEicVChY3Mz7/Juv1QVZKAzKOPvcMr/JFGOYAROl9P0lREwVuqdyqA==",
+      "path": "masstransit.quartz/8.4.1",
+      "hashPath": "masstransit.quartz.8.4.1.nupkg.sha512"
     },
     "MassTransit.RabbitMQ/8.4.1": {
       "type": "package",
@@ -289,6 +346,27 @@
       "sha512": "sha512-bXJEZrW9ny8vjMF1JV253WeLhpEVzFo1lyaZu1vQ4ZxWUlVvknZ/+ftFgVheLubb4eZPSwwxBeqS1JkCOjxd8g==",
       "path": "microsoft.extensions.primitives/8.0.0",
       "hashPath": "microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+    },
+    "Quartz/3.14.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-j8mY6S0FWbtuEFbStUEZAkkGpZLbSuTT0us1w0DUQqhi+vwg/7XXS36TeH3o34zZoqYGyXvk6jrKnW/p6kS8sg==",
+      "path": "quartz/3.14.0",
+      "hashPath": "quartz.3.14.0.nupkg.sha512"
+    },
+    "Quartz.Extensions.DependencyInjection/3.14.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CUY9ZaUsmnl8YxPcl3eXmg/1UVWv1NdyATKGaBjfxf8MYH36vgCoerv7aCSjM/oRbdiaBwNnPfNgHMzxUu1p1g==",
+      "path": "quartz.extensions.dependencyinjection/3.14.0",
+      "hashPath": "quartz.extensions.dependencyinjection.3.14.0.nupkg.sha512"
+    },
+    "Quartz.Extensions.Hosting/3.14.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kbxBND5Nift+qwOud8cjywoLvjcQX+aLt6R7qQcQVg8w84NUNjTsjzZ5zIod9vz7ricSvIaQXGVbhpm7X6yVQA==",
+      "path": "quartz.extensions.hosting/3.14.0",
+      "hashPath": "quartz.extensions.hosting.3.14.0.nupkg.sha512"
     },
     "RabbitMQ.Client/7.1.2": {
       "type": "package",

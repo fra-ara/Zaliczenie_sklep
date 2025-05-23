@@ -10,6 +10,8 @@ var busControl = Bus.Factory.CreateUsingRabbitMq(cfg =>
         h.Password("guest");
     });
 
+    cfg.UseDelayedMessageScheduler();
+
     cfg.ReceiveEndpoint("order-saga", e =>
     {
         e.StateMachineSaga(new OrderSagaStateMachine(), new InMemorySagaRepository<OrderState>());
@@ -20,10 +22,7 @@ var busControl = Bus.Factory.CreateUsingRabbitMq(cfg =>
         e.Consumer<WarehouseService>();
     });
 
-    cfg.ReceiveEndpoint("client-service", e =>
-    {
-        e.Consumer<ClientService>();
-    });
+    // Nie musisz tutaj definiować endpointu dla klienta — klient sam tworzy swój listener
 });
 
 await busControl.StartAsync();

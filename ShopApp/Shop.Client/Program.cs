@@ -1,18 +1,38 @@
 ﻿using MassTransit;
+using Microsoft.Extensions.DependencyInjection;
+using Shop.Client.Services;
 using Shop.Client.ViewModels;
 using Shop.Client.Views;
 
-var busControl = Bus.Factory.CreateUsingRabbitMq(cfg =>
+var services = new ServiceCollection();
+
+services.AddMassTransit(x =>
 {
-    cfg.Host("localhost", "/", h =>
+    x.AddConsumer<ClientService>();
+
+    x.UsingRabbitMq((context, cfg) =>
     {
-        h.Username("guest");
-        h.Password("guest");
+        cfg.Host("localhost", "/", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+
+        cfg.ReceiveEndpoint("client-confirmation", e =>
+        {
+            e.ConfigureConsumer<ClientService>(context);
+        });
     });
 });
 
+var provider = services.BuildServiceProvider();
+var busControl = provider.GetRequiredService<IBusControl>();
+
 await busControl.StartAsync();
+Console.WriteLine("🚀 Shop.Client is running...");
 
 var viewModel = new OrderViewModel(busControl);
 var view = new ConsoleView(viewModel);
-await view.RunAsync();
+await view.RunAsync();  // tutaj w konsoli możesz wpisywać ilości zamówienia i wysyłać
+
+await busControl.StopAsync();

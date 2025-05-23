@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "ZfX9Lnenr8s=",
+  "dgSpecHash": "/VKr2TNVLK4=",
   "success": true,
   "projectFilePath": "/Users/fraara/Documents/zaliczenie/ShopApp/Shop.Server/Shop.Server.csproj",
   "expectedPackageFiles": [
     "/Users/fraara/.nuget/packages/masstransit/8.4.1/masstransit.8.4.1.nupkg.sha512",
     "/Users/fraara/.nuget/packages/masstransit.abstractions/8.4.1/masstransit.abstractions.8.4.1.nupkg.sha512",
+    "/Users/fraara/.nuget/packages/masstransit.quartz/8.4.1/masstransit.quartz.8.4.1.nupkg.sha512",
     "/Users/fraara/.nuget/packages/masstransit.rabbitmq/8.4.1/masstransit.rabbitmq.8.4.1.nupkg.sha512",
     "/Users/fraara/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
     "/Users/fraara/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
@@ -17,6 +18,9 @@
     "/Users/fraara/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
     "/Users/fraara/.nuget/packages/microsoft.extensions.options/8.0.0/microsoft.extensions.options.8.0.0.nupkg.sha512",
     "/Users/fraara/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "/Users/fraara/.nuget/packages/quartz/3.14.0/quartz.3.14.0.nupkg.sha512",
+    "/Users/fraara/.nuget/packages/quartz.extensions.dependencyinjection/3.14.0/quartz.extensions.dependencyinjection.3.14.0.nupkg.sha512",
+    "/Users/fraara/.nuget/packages/quartz.extensions.hosting/3.14.0/quartz.extensions.hosting.3.14.0.nupkg.sha512",
     "/Users/fraara/.nuget/packages/rabbitmq.client/7.1.2/rabbitmq.client.7.1.2.nupkg.sha512",
     "/Users/fraara/.nuget/packages/system.diagnostics.diagnosticsource/8.0.0/system.diagnostics.diagnosticsource.8.0.0.nupkg.sha512",
     "/Users/fraara/.nuget/packages/system.io.pipelines/8.0.0/system.io.pipelines.8.0.0.nupkg.sha512",

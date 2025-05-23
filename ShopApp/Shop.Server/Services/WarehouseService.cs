@@ -1,38 +1,44 @@
 using MassTransit;
 using Shop.Server.Messages;
+using System;
+using System.Threading.Tasks;
 
 namespace Shop.Server.Services;
 
-public class WarehouseService :
-    IConsumer<CheckStock>,
-    IConsumer<OrderRejected>
+public class WarehouseService : IConsumer<CheckStock>
 {
-    private static int FreeUnits = 10;
-    private static int ReservedUnits = 0;
-
-    public Task Consume(ConsumeContext<CheckStock> context)
+    public async Task Consume(ConsumeContext<CheckStock> context)
     {
-        var qty = context.Message.Quantity;
-        Console.WriteLine($"🧮 Magazyn: Sprawdzam dostępność dla {qty} szt.");
+        Console.WriteLine($"🏭 Magazyn: Sprawdzam dostępność {context.Message.Quantity} szt.");
 
-        if (FreeUnits >= qty)
-        {
-            FreeUnits -= qty;
-            ReservedUnits += qty;
-            Console.WriteLine($"✅ Magazyn: Zarezerwowano {qty}, wolne: {FreeUnits}, zarezerwowane: {ReservedUnits}");
-            return context.Publish(new StockAvailable(context.Message.OrderId, context.Message.Quantity));
-        }
-        else
-        {
-            Console.WriteLine($"❌ Magazyn: Brak zasobów.");
-            return context.Publish(new StockUnavailable(context.Message.OrderId, context.Message.Quantity));
-        }
-    }
+        var random = new Random();
+        var available = random.Next(2) == 0;
 
-    public Task Consume(ConsumeContext<OrderRejected> context)
-    {
-        Console.WriteLine($"↩️ Magazyn: Zamówienie odrzucone, zwracam zasoby");
-        ReservedUnits += 0;
-        return Task.CompletedTask;
+        try
+        {
+            await Task.Delay(500, context.CancellationToken);
+
+            if (available)
+            {
+                Console.WriteLine("✅ Magazyn: Towar dostępny");
+
+                await context.Publish(new StockAvailable(context.Message.OrderId, context.Message.Quantity));
+            }
+            else
+            {
+                Console.WriteLine("❌ Magazyn: Towar niedostępny");
+
+                await context.Publish(new StockUnavailable(context.Message.OrderId, context.Message.Quantity));
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            Console.WriteLine("⚠️ WarehouseService: Operacja została anulowana");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"❌ WarehouseService: Błąd - {ex.Message}");
+            throw;
+        }
     }
 }

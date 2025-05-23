@@ -8,8 +8,10 @@
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/Shop.Client.pdb
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/MassTransit.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/MassTransit.Abstractions.dll
+/Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/MassTransit.QuartzIntegration.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/MassTransit.RabbitMqTransport.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll
+/Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll
@@ -19,6 +21,9 @@
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/Microsoft.Extensions.Primitives.dll
+/Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/Quartz.dll
+/Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/Quartz.Extensions.DependencyInjection.dll
+/Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/Quartz.Extensions.Hosting.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/RabbitMQ.Client.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/System.IO.Pipelines.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/bin/Debug/net8.0/System.Threading.RateLimiting.dll
@@ -29,6 +34,7 @@
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/obj/Debug/net8.0/Shop.Client.AssemblyInfoInputs.cache
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/obj/Debug/net8.0/Shop.Client.AssemblyInfo.cs
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/obj/Debug/net8.0/Shop.Client.csproj.CoreCompileInputs.cache
+/Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/obj/Debug/net8.0/Shop.Client.sourcelink.json
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/obj/Debug/net8.0/Shop.Cli.47F95A03.Up2Date
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/obj/Debug/net8.0/Shop.Client.dll
 /Users/fraara/Documents/zaliczenie/ShopApp/Shop.Client/obj/Debug/net8.0/refint/Shop.Client.dll
