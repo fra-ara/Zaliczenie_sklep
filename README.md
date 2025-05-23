@@ -40,22 +40,44 @@ docker run -d --hostname rabbitmq --name rabbitmq \
 Panel RabbitMQ: http://localhost:15672
 Login: guest, Hasło: guest
 
-### 2. Budowanie i uruchamianie
+## 🚀 Uruchomienie
+
+1. Upewnij się, że RabbitMQ działa lokalnie.
+2. W terminalu, uruchom serwer:
 
 ``` 
-dotnet build
-dotnet run --project Shop.Server
-dotnet run --project Shop.Client
-
+```bash
+cd Shop.Server
+dotnet run
 ```
-### 📁 Struktura projektu
 
-ShopApp/  
-├── Shop.Server/         
-   │   ├── Consumers/       
-   │   ├── Messages/        
-   │   ├── Services/        
-├── Shop.Client/   
-   │   ├── Models/   
-   │   ├── ViewModels/        
-   │   ├── Views/        
+3. W drugim terminalu. uruchom klienta:
+
+```bash
+cd Shop.Client
+dotnet run
+```
+
+4. W konsoli klienta wpisuj ilość do zamówienia (np. 1, 2, itd.).
+
+- System losowo potwierdza lub odrzuca zamówienia.
+
+- Serwer i klient logują przebieg całego procesu.
+
+### 🧠 Architektura
+MassTransit z RabbitMQ jako message broker
+
+Saga (state machine) w OrderSagaStateMachine.cs śledzi cykl życia zamówienia
+
+ClientService.cs reaguje na prośby o potwierdzenie
+
+### 🧪 Funkcjonalność
+Sprawdzenie dostępności towaru
+
+Potwierdzenie lub odrzucenie przez klienta
+
+Obsługa timeoutu
+
+Finalizacja lub anulowanie zamówienia
+
+     
